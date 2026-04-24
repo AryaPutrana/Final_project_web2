@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('transaksis', function (Blueprint $table) {
-            //
+            // untuk memodifikasi tabel yang sudah ada 
         });
     }
 
@@ -22,7 +22,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('transaksis', function (Blueprint $table) {
-            //
+            // untuk membalikan perubahan yang sudah ada
         });
     }
 };

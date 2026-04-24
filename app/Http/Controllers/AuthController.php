@@ -44,7 +44,7 @@ class AuthController extends Controller
             return redirect()->intended('/');
         }
     
-        // Ini cukup, baris return di bawahnya tidak perlu
+
         return back()->withErrors([
             'email' => 'Email atau password salah, atau akun belum terdaftar.',
         ])->withInput();

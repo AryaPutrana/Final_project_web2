@@ -54,13 +54,13 @@ class TransaksiController extends Controller
             ];
         }
     
-        // Simpan transaksi utama
+        // Untuk Simpan transaksi utama
         $transaksi = Transaksi::create([
             'nama_pembeli' => $request->nama_pembeli,
             'total_harga' => $total
         ]);
     
-        // Simpan detail transaksi
+        // Untuk Simpan detail transaksi
         foreach ($details as $item) {
             TransaksiDetail::create([
                 'transaksi_id' => $transaksi->id,
@@ -69,24 +69,21 @@ class TransaksiController extends Controller
                 'subtotal' => $item['subtotal']
             ]);
     
-            // Kurangi stok barang
+            // Untuk Kurangi stok barang
             $item['barang']->stok -= $item['jumlah'];
             $item['barang']->save();
         }
     
         return redirect()->route('transaksi.index')->with('success', 'Transaksi berhasil disimpan!');
     }
+
     
-
-
-
-
-    // ✅ Tambahkan di sini
     public function nota($id)
-{
+
+    {
     $transaksi = Transaksi::with('details.barang')->findOrFail($id);
     return view('transaksi.nota', compact('transaksi'));
-}
+    }
 
 }
 
